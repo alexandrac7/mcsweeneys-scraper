@@ -32,14 +32,14 @@ mongoose.connect("mongodb://localhost/mcsweeneysdb");
 
 // Routes
 
-// A GET route for scraping the echoJS website
+// Scraping tools
 app.get("/scrape", function(req, res) {
-  // First, we grab the body of the html with request
+  //Axios to load in McSweeney's
   axios.get("https://www.mcsweeneys.net/").then(function(response) {
-    // Then, we load that into cheerio and save it to $ for a shorthand selector
+    //Cheerio to allow us to manipulate data procured by Axios
     var $ = cheerio.load(response.data);
 
-    $("container.today-container.today").each(function(i, element) {
+    $("today-container.today").each(function(i, element) {
       // Save an empty result object
       var result = {};
 
